@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TTT2</title>
+    <link type="text/css" rel="stylesheet" href="{{ static_url('tictactoe.css') }}">
+</head>
+<body>
+<div ng-app="game">
+    <div ng-controller="gameCtrl">
+
+        <div class="playing-field">
+
+            <!-- Game info -->
+            <div class="game-info">
+                <div class="game-info__user user" ng-hide="playerNamed()">
+                    {[{currentUser}]}
+                </div>
+                <div class="game-info__user user user--second">
+                    {[{secondUser}]}
+                </div>
+            </div>
+
+            <div class="cells-wrapper">
+
+                <!-- Gamepad -->
+                <ul class="cells"
+                    ng-class="currentStepClass()">
+                    <li class="cell"
+                        ng-repeat="cell in cellsList">
+
+                        <ul class="symbols symbols--steps"
+                            ng-class="stepSymbolClass()">
+                            <li class="symbol symbol--x"
+                                ng-click="makeStep(cell, 'x')">X
+                            </li>
+                            <li class="symbol symbol--o"
+                                ng-click="makeStep(cell, 'o')">0
+                            </li>
+                        </ul>
+
+                    </li>
+                </ul>
+
+                <!-- Intro -->
+                <div class="message"
+                     ng-show="showIntroState">
+                    <div class="message__content">
+                        <form name="nameForm" ng-submit="setName()"
+                              ng-show="playerNamed()">
+                            <input type="text" ng-model="nameText"
+                                   class="message__input"
+                                   placeholder="Ваше имя" required>
+                            <input type="submit" value="Начать"
+                                   class="message__button"
+                                   ng-disabled="nameForm.$invalid">
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Game state -->
+                <div class="message message--game-state"
+                     ng-show="showGameState">
+                    <div class="message__content">
+                        {[{ stateInfo }]}
+                    </div>
+                </div>
+
+                <!-- Message -->
+                <div class="message message--final"
+                     ng-show="showMessageState"
+                     ng-click="newGame()">
+                    <div class="message__content">
+                        {[{message}]}
+                        <button class="message__button">Еще раз?</button>
+                    </div>
+                </div>
+
+                <!-- User choice -->
+                <ul class="symbols symbols--user-choice"
+                    ng-class="userSymbolClass()"
+                    ng-show="userChoiceShow">
+                    <li class="symbol symbol--x">X</li>
+                    <li class="symbol symbol--o">0</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<script src="{{ static_url('angular.min.js') }}"></script>
+<script src="{{ static_url('sockjs.min.js') }}"></script>
+<script src="{{ static_url('tictactoe.js') }}"></script>
+</body>
+</html>

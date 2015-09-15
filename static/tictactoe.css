@@ -1,0 +1,235 @@
+/*  Commmon
+--------------------- */
+HTML {
+  font-size: 16px;
+}
+
+BODY {
+  background: #FFF;
+  font-family: Verdana;
+}
+
+UL, LI {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/*  Playing Field
+--------------------- */
+.playing-field {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+/*  Game Info
+--------------------- */
+.game-info {
+  min-height: 50px;
+}
+
+.user--second {
+  color: #AAA;
+}
+
+/*  Cells
+--------------------- */
+.cells-wrapper {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border: 5px solid #CCC;
+  background-color: #FFF;
+  background-image: -webkit-linear-gradient(transparent 99px, #CCC), -webkit-linear-gradient(left, transparent 99px, #CCC);
+  background-image: linear-gradient(transparent 99px, #CCC), linear-gradient(to right, transparent 99px, #CCC);
+  background-size: 100px 100px;
+}
+
+.cell {
+  position: relative;
+  float: left;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+}
+
+/*  Symbols
+--------------------- */
+.symbols {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.symbol {
+  position: absolute;
+  width: 100%;
+  text-shadow: 0 0 3px #777;
+  text-align: center;
+  color: #CCC;
+  cursor: pointer;
+  -webkit-transition: all .2s;
+          transition: all .2s;
+}
+
+.symbols--steps .symbol {
+  font-size: 3rem;
+}
+.symbols--steps .symbol:hover {
+  font-size: 4rem;
+}
+
+/* Choice of first step symbols
+--------------------- */
+.symbols--choice {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+.symbols--choice .symbol {
+  width: 50%;
+  line-height: 300px;
+  text-shadow: 0 0 3px #000;
+  font-size: 7rem;
+  color: #FFF;
+}
+.symbols--choice .symbol:hover {
+  font-size: 8rem;
+}
+.symbols--choice .symbol--o {
+  right: 0;
+}
+
+/*  Choosen symbol in right corner
+--------------------- */
+.symbols--user-choice {
+  z-index: 2;
+  width: 4rem;
+  height: 4rem;
+  left: auto;
+  bottom: auto;
+  top: -2rem;
+  right: -2rem;
+}
+.symbols--user-choice .symbol {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 5px solid #CCC;
+  color: #FFF;
+}
+.symbols--user-choice .symbol,
+.symbols--user-choice .symbol:hover {
+  line-height: 2em;
+  font-size: 2rem;
+}
+
+/*  Steps
+--------------------- */
+.current-step--o .symbols:not(.symbols--selected) .symbol--x,
+.symbols--selected-o .symbol--x,
+.user-selected-symbol--o .symbol--x {
+  display: none;
+}
+
+.current-step--x .symbols:not(.symbols--selected) .symbol--o,
+.symbols--selected-x .symbol--o,
+.user-selected-symbol--x .symbol--o {
+  display: none;
+}
+
+/*  Selected symbols
+--------------------- */
+.symbols--selected .symbol {
+  border-radius: 50%;
+  font-size: 4rem;
+  color: #FFF;
+  cursor: default;
+}
+
+.symbols--choice .symbol--o,
+.symbols--selected-o .symbol--o,
+.user-selected-symbol--o .symbol--o {
+  background: steelblue;
+}
+
+.symbols--choice .symbol--x,
+.symbols--selected-x .symbol--x,
+.user-selected-symbol--x .symbol--x {
+  background: orangered;
+}
+
+.symbols--hidden {
+  display: none;
+}
+
+.current-step--none .symbol {
+  background: #DDD;
+  border-radius: 50%;
+  text-shadow: none;
+  color: #FFF;
+}
+
+/*  Message
+--------------------- */
+.message {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  cursor: pointer;
+}
+.message__content {
+  display: inline-block;
+  width: 95%;
+  vertical-align: middle;
+}
+.message:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+.message--game-state {
+  font-size: 1.2rem;
+}
+.message--final {
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.message__input {
+  padding: .5rem .8rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .3) inset;
+  border: 1px solid #CCC;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  }
+.message__button {
+  display: block;
+  margin: 1rem auto 0;
+  padding: .7rem 1.5rem;
+  border: 0;
+  background: #333;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+  border-radius: 5px;
+  text-shadow: 0 0 3px #000;
+  font-size: 1.3rem;
+  color: #FFF;
+  cursor: pointer;
+}
+
